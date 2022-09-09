@@ -1,0 +1,29 @@
+A) - все студенты
+
+#Active Record
+Student.all.count
+
+#SQL
+SELECT COUNT(*)
+FROM students;
+
+B) - количество студентов с именем Иван
+
+#Active Record
+Student.where(name: "Иван").count
+
+#SQL
+SELECT COUNT(*)
+FROM students
+WHERE name = 'Иван'
+GROUP BY name;
+
+С) - количество студентов созданных после 1 сентября 2020 года
+
+#Active Record
+Student.where("created_at > ?", 01.09.2020).count
+
+#SQL
+SELECT COUNT(created_at)
+FROM students
+WHERE created_at > '2020-09-01';

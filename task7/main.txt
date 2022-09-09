@@ -1,0 +1,32 @@
+таблица parents
+
+A) - количество студентов с родителями
+
+#Active Record
+Student.where.not(parent_id: nil).count
+
+#SQL
+SELECT COUNT(*)
+FROM students
+WHERE parent_id IS NOT NULL;
+
+B) - количество студентов с родителями при том что имя родителя Марина
+
+#Active Record
+Student.joins(:parents).where.not(parent_id: nil).where(name: "Марина").count
+
+#SQL
+SELECT COUNT(*)
+FROM students
+INNER JOIN parents ON students.parent_id = parents.id
+WHERE parents.name = 'Марина';
+
+C) - количество студентов без родителя
+
+#Active Record
+Student.where(parent_id: nil).count
+
+#SQL
+SELECT COUNT(*)
+FROM students
+WHERE parent_id IS NULL;
